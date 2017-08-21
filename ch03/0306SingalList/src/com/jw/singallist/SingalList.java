@@ -52,9 +52,13 @@ public class SingalList {
      */
     @Override
     public String toString() {
-        StringBuilder strSingalList = new StringBuilder();
         assert this.head != null;
+        if(this.head.getNext() == null){
+            return "";
+        }
+
         ListNode currentNode = this.head;
+        StringBuilder strSingalList = new StringBuilder();
 
         while (currentNode.getNext() != null) {
             strSingalList.append(currentNode.getNext().getData() + "->");
@@ -83,7 +87,7 @@ public class SingalList {
         }else if(pos>=(this.len-1)){
             ListNode currentNode = this.head;
             while (currentNode.getNext().getNext() != null){
-               currentNode.setNext(currentNode.getNext());
+               currentNode = currentNode.getNext();
             }
             currentNode.setNext(null);
             this.len -= 1;
@@ -92,7 +96,7 @@ public class SingalList {
             ListNode currentNode = this.head;
             int index = 0;
             while (currentNode.getNext().getNext() != null){
-                currentNode.setNext(currentNode.getNext());
+                currentNode = currentNode.getNext();
                 index++;
                 if(index>=pos){
                     break;
@@ -101,6 +105,25 @@ public class SingalList {
             currentNode.setNext(currentNode.getNext().getNext());
             this.len -= 1;
             return true;
+        }
+    }
+
+    public void clear(){
+        if (this.len<=0){
+            this.head.setNext(null);
+            this.len = 0;
+            return;
+        }
+
+        ListNode currentNode = this.head.getNext();
+        ListNode tempNode = null;
+        this.head.setNext(null);
+        this.len = 0;
+        while (currentNode.getNext()!=null){
+            // 所有节点打散，其实在Java中这是没必要的，C/C++中需要释放内存，但是Java不需要
+            tempNode = currentNode;
+            currentNode = currentNode.getNext();
+            tempNode.setNext(null);
         }
     }
 }
