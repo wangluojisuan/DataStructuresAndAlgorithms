@@ -12,5 +12,9 @@ public class Main {
         list.insert(new ListNode(5),0);
 
         System.out.println(list.toString() + ",Length=" + list.getLen());
+
+        // 删除
+        list.delete(10);
+        System.out.println(list.toString() + ",Length=" + list.getLen());
     }
 }
