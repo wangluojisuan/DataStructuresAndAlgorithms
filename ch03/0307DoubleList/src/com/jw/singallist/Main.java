@@ -9,6 +9,7 @@ public class Main {
         list.insert(new ListNode(2),10);
         list.insert(new ListNode(3),10);
         list.insert(new ListNode(4),10);
+        list.insert(new ListNode(5),0);
 
         System.out.println(list.toString() + ",Length=" + list.getLen());
     }

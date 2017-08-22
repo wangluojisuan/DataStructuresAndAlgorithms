@@ -75,6 +75,10 @@ public class DoubleList {
         }
     }
 
+    /**
+     * 输出内容
+     * @return
+     */
     @Override
     public String toString() {
         if(this.head.getNext() == null){
@@ -91,5 +95,45 @@ public class DoubleList {
         strList = strList.delete(strList.length()-2, strList.length());
 
         return strList.toString();
+    }
+
+    /**
+     * 删除指定位置的节点
+     * @param pos
+     * @return
+     */
+    public Boolean delete(int pos){
+        if(this.head.getNext() == null){
+            System.out.println("链表已为空，不能继续删除");
+            return false;
+        }
+
+        if (pos <= 0){
+            ListNode deleteNode = this.head.getNext();
+            this.head.setNext(deleteNode.getNext());
+            deleteNode.getNext().setPrevious(this.head);
+            deleteNode.setPrevious(null);
+            deleteNode.setNext(null);       // 垃圾回收器会处理一切
+            this.len -= 1;
+            return true;
+        }
+
+        ListNode tempNode = this.head;
+        int index = 0;
+        while (tempNode.getNext() != null){
+            tempNode = tempNode.getNext();
+            if(index >= pos){
+                break;
+            }
+            index++;
+        }
+        tempNode.getPrevious().setNext(tempNode.getNext());
+        if (tempNode.getNext() != null) {
+            tempNode.getNext().setPrevious(tempNode.getPrevious());
+        }
+        tempNode.setPrevious(null);
+        tempNode.setNext(null);
+        this.len -= 1;
+        return true;
     }
 }
