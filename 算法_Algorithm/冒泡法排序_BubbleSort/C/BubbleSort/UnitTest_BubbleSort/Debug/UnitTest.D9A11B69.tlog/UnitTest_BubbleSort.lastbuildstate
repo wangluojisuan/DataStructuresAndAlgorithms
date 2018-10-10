@@ -1,0 +1,2 @@
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.16299.0
+Debug|Win32|C:\MyFile\Codes\Github\DataStructuresAndAlgorithms\算法_Algorithm\冒泡法排序_BubbleSort\C\BubbleSort\|
